@@ -38,4 +38,12 @@ public class RoomRepository{
 
         Assert.state(updated == 1, "Update room number : "+roomnumber + "Failed");
     }
+
+    public void Delete(Integer room_number){
+        String sql = "Delete from public.room where roomnumber = :roomnumber";
+        var deleted =  client.sql(sql).param("roomnumber",room_number).update();
+
+        Assert.state(deleted == 1, "Failed to delete room number "+room_number);
+
+    }
 }

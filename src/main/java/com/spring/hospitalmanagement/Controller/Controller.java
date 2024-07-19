@@ -101,12 +101,19 @@ public class Controller {
          roomRepository.update(room,room_number);
     }
 
+    @DeleteMapping("/delete/room/{roomNumber}")
+    @ResponseStatus(HttpStatus.GONE)
+    public void deleteRoom(@PathVariable Integer roomNumber){
+         roomRepository.Delete(roomNumber);
+    }
+
 
     // Prescribes Controller
     @GetMapping("/prescribes")
     public List<Prescribes> findAllPrescribes(){
         return prescribesRepository.findAll();
     }
+
 
 
 
