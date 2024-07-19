@@ -19,6 +19,7 @@ public class Controller {
     private  final RoomRepository roomRepository;
     private  final PrescribesRepository prescribesRepository;
     private final StayRepository stayRepository;
+    private  final  Trained_InRepository trainedInRepository;
 
     public Controller(
             NurseRepository nurseRepository,
@@ -27,7 +28,8 @@ public class Controller {
             PatientRepository patientRepository,
             RoomRepository roomRepository,
             PrescribesRepository prescribesRepository,
-            StayRepository stayRepository
+            StayRepository stayRepository,
+            Trained_InRepository trainedInRepository
     ) {
         this.nurseRepository = nurseRepository;
         this.departmentRepository = departmentRepository;
@@ -36,6 +38,7 @@ public class Controller {
         this.roomRepository = roomRepository;
         this.prescribesRepository = prescribesRepository;
         this.stayRepository = stayRepository;
+        this.trainedInRepository = trainedInRepository;
     }
 
     @GetMapping("/nurses")
@@ -88,6 +91,12 @@ public class Controller {
     @GetMapping("/stays")
     public List<Stay> findAllStay(){
         return  stayRepository.findAll();
+    }
+
+    //TRAINED IN CONTROLLER
+    @GetMapping("/traineds_in")
+    public List<Trained_In> findAllTrained(){
+        return trainedInRepository.findAll();
     }
 
 }
