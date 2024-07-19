@@ -2,6 +2,7 @@ package com.spring.hospitalmanagement.Controller;
 
 import com.spring.hospitalmanagement.Model.*;
 import com.spring.hospitalmanagement.Repository.*;
+import com.spring.hospitalmanagement.RuntimeNotFoundException.RuntimeNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -76,6 +77,16 @@ public class Controller {
     @GetMapping("/rooms")
     public List<Room> findAllRoom(){
         return  roomRepository.findAll();
+    }
+
+    @GetMapping("/rooms/{room_number}")
+    public Optional<Room> findRoom(@PathVariable Integer room_number){
+
+        if( roomRepository.findById(room_number).isEmpty()){
+            throw  new RuntimeNotFoundException("Room Not found");
+        }
+
+        return  roomRepository.findById(room_number);
     }
 
 
