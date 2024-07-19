@@ -2,6 +2,7 @@ package com.spring.hospitalmanagement.Controller;
 
 import com.spring.hospitalmanagement.Model.Department;
 import com.spring.hospitalmanagement.Model.Nurse;
+import com.spring.hospitalmanagement.Repository.AffiliatedWithRepository;
 import com.spring.hospitalmanagement.Repository.DepartmentRepository;
 import com.spring.hospitalmanagement.Repository.NurseRepository;
 import org.springframework.http.HttpStatus;
@@ -16,13 +17,16 @@ public class Controller {
 
     private final NurseRepository nurseRepository;
     private  final DepartmentRepository departmentRepository;
+    private  final AffiliatedWithRepository affiliatedWithRepository;
 
     public Controller(
             NurseRepository nurseRepository,
-            DepartmentRepository departmentRepository
+            DepartmentRepository departmentRepository,
+            AffiliatedWithRepository affiliatedWithRepository
     ) {
         this.nurseRepository = nurseRepository;
         this.departmentRepository = departmentRepository;
+        this.affiliatedWithRepository = affiliatedWithRepository;
     }
 
     @GetMapping("/nurses")
@@ -41,6 +45,14 @@ public class Controller {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Optional<Department> findDepartmentById(@PathVariable Integer id){
         return  departmentRepository.findById(id);
+    }
+
+    //AFFILIATED CONTROLLER
+
+    @GetMapping("/affiliateds")
+    @ResponseStatus(HttpStatus.OK)
+    public List<AffiliatedWithRepository> findAllAffiliated(){
+        return affiliatedWithRepository.findAll();
     }
 
 }
