@@ -1,15 +1,9 @@
 package com.spring.hospitalmanagement.Controller;
 
 import com.spring.hospitalmanagement.Model.*;
+import com.spring.hospitalmanagement.Repository.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import com.spring.hospitalmanagement.Repository.PrescribesRepository;
-import com.spring.hospitalmanagement.Repository.PatientRepository;
-import com.spring.hospitalmanagement.Repository.DepartmentRepository;
-import com.spring.hospitalmanagement.Repository.NurseRepository;
-import com.spring.hospitalmanagement.Repository.RoomRepository;
-import com.spring.hospitalmanagement.Repository.AffiliatedWithRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +18,7 @@ public class Controller {
     private final PatientRepository patientRepository;
     private  final RoomRepository roomRepository;
     private  final PrescribesRepository prescribesRepository;
+    private final StayRepository stayRepository;
 
     public Controller(
             NurseRepository nurseRepository,
@@ -31,7 +26,8 @@ public class Controller {
             AffiliatedWithRepository affiliatedWithRepository,
             PatientRepository patientRepository,
             RoomRepository roomRepository,
-            PrescribesRepository prescribesRepository
+            PrescribesRepository prescribesRepository,
+            StayRepository stayRepository
     ) {
         this.nurseRepository = nurseRepository;
         this.departmentRepository = departmentRepository;
@@ -39,6 +35,7 @@ public class Controller {
         this.patientRepository = patientRepository;
         this.roomRepository = roomRepository;
         this.prescribesRepository = prescribesRepository;
+        this.stayRepository = stayRepository;
     }
 
     @GetMapping("/nurses")
@@ -85,5 +82,12 @@ public class Controller {
         return prescribesRepository.findAll();
     }
 
+
+
+    //Stay CONTOLLER
+    @GetMapping("/stays")
+    public List<Stay> findAllStay(){
+        return  stayRepository.findAll();
+    }
 
 }
