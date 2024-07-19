@@ -1,10 +1,13 @@
 package com.spring.hospitalmanagement.Controller;
 
+import com.spring.hospitalmanagement.Model.Affiliated_with;
 import com.spring.hospitalmanagement.Model.Department;
 import com.spring.hospitalmanagement.Model.Nurse;
+import com.spring.hospitalmanagement.Model.Patient;
 import com.spring.hospitalmanagement.Repository.AffiliatedWithRepository;
 import com.spring.hospitalmanagement.Repository.DepartmentRepository;
 import com.spring.hospitalmanagement.Repository.NurseRepository;
+import com.spring.hospitalmanagement.Repository.PatientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +21,18 @@ public class Controller {
     private final NurseRepository nurseRepository;
     private  final DepartmentRepository departmentRepository;
     private  final AffiliatedWithRepository affiliatedWithRepository;
+    private final PatientRepository patientRepository;
 
     public Controller(
             NurseRepository nurseRepository,
             DepartmentRepository departmentRepository,
-            AffiliatedWithRepository affiliatedWithRepository
+            AffiliatedWithRepository affiliatedWithRepository,
+            PatientRepository patientRepository
     ) {
         this.nurseRepository = nurseRepository;
         this.departmentRepository = departmentRepository;
         this.affiliatedWithRepository = affiliatedWithRepository;
+        this.patientRepository = patientRepository;
     }
 
     @GetMapping("/nurses")
@@ -51,8 +57,13 @@ public class Controller {
 
     @GetMapping("/affiliateds")
     @ResponseStatus(HttpStatus.OK)
-    public List<AffiliatedWithRepository> findAllAffiliated(){
+    public List<Affiliated_with> findAllAffiliated(){
         return affiliatedWithRepository.findAll();
+    }
+    // PATIENT CONTROLLER
+    @GetMapping("/patients")
+    public List<Patient> findAllPatient(){
+        return patientRepository.findAll();
     }
 
 }

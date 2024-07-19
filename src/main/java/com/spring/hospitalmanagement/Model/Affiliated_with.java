@@ -13,12 +13,12 @@ import lombok.Setter;
 public class Affiliated_with {
 
     @Id
-    private Integer physicial;
+    private Integer physician;
     private Integer department;
     private String primaryaffiliation;
 
-    public Affiliated_with(Integer physicial, Integer department, String primaryaffiliation) {
-        this.physicial = physicial;
+    public Affiliated_with(Integer physician, Integer department, String primaryaffiliation) {
+        this.physician = physician;
         this.department = department;
         this.primaryaffiliation = primaryaffiliation;
     }
