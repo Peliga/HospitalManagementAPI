@@ -76,7 +76,7 @@ public class Controller {
     // ROOM CONTROLLER
     @GetMapping("/rooms")
     public List<Room> findAllRoom(){
-        return  roomRepository.findAll();
+        return (List<Room>) roomRepository.findAll();
     }
 
     @GetMapping("/rooms/{room_number}")
@@ -86,7 +86,19 @@ public class Controller {
             throw  new RuntimeNotFoundException("Room Not found");
         }
 
-        return  roomRepository.findById(room_number);
+       return roomRepository.findById(room_number);
+    }
+
+    @PostMapping("/room")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void createRoom(@RequestBody Room room){
+        roomRepository.save(room);
+    }
+
+    @PutMapping("/room/{room_number}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void roomUpdate(@RequestBody Room room,@PathVariable Integer room_number){
+         roomRepository.update(room,room_number);
     }
 
 
