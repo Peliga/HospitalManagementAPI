@@ -4,6 +4,8 @@ import com.spring.hospitalmanagement.Model.Nurse;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
+
+
 import java.util.List;
 
 @Repository
