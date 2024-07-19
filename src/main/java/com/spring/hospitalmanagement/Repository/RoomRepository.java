@@ -1,9 +1,9 @@
 package com.spring.hospitalmanagement.Repository;
 
-import com.spring.hospitalmanagement.Model.Patient;
+import com.spring.hospitalmanagement.Model.Room;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PatientRepository extends ListCrudRepository<Patient, Integer> {
+public interface RoomRepository extends ListCrudRepository<Room, Integer> {
 }
