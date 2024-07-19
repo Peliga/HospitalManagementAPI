@@ -1,9 +1,15 @@
 package com.spring.hospitalmanagement.Controller;
 
 import com.spring.hospitalmanagement.Model.*;
-import com.spring.hospitalmanagement.Repository.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import com.spring.hospitalmanagement.Repository.PrescribesRepository;
+import com.spring.hospitalmanagement.Repository.PatientRepository;
+import com.spring.hospitalmanagement.Repository.DepartmentRepository;
+import com.spring.hospitalmanagement.Repository.NurseRepository;
+import com.spring.hospitalmanagement.Repository.RoomRepository;
+import com.spring.hospitalmanagement.Repository.AffiliatedWithRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,19 +23,22 @@ public class Controller {
     private  final AffiliatedWithRepository affiliatedWithRepository;
     private final PatientRepository patientRepository;
     private  final RoomRepository roomRepository;
+    private  final PrescribesRepository prescribesRepository;
 
     public Controller(
             NurseRepository nurseRepository,
             DepartmentRepository departmentRepository,
             AffiliatedWithRepository affiliatedWithRepository,
             PatientRepository patientRepository,
-            RoomRepository roomRepository
+            RoomRepository roomRepository,
+            PrescribesRepository prescribesRepository
     ) {
         this.nurseRepository = nurseRepository;
         this.departmentRepository = departmentRepository;
         this.affiliatedWithRepository = affiliatedWithRepository;
         this.patientRepository = patientRepository;
         this.roomRepository = roomRepository;
+        this.prescribesRepository = prescribesRepository;
     }
 
     @GetMapping("/nurses")
@@ -68,4 +77,13 @@ public class Controller {
     public List<Room> findAllRoom(){
         return  roomRepository.findAll();
     }
+
+
+    // Prescribes Controller
+    @GetMapping("/prescribes")
+    public List<Prescribes> findAllPrescribes(){
+        return prescribesRepository.findAll();
+    }
+
+
 }
