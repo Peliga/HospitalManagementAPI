@@ -76,7 +76,7 @@ public class Controller {
     // ROOM CONTROLLER
     @GetMapping("/rooms")
     public List<Room> findAllRoom(){
-        return (List<Room>) roomRepository.findAll();
+        return roomRepository.findAll();
     }
 
     @GetMapping("/rooms/{room_number}")
